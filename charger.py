@@ -29,6 +29,7 @@ h.helicsFederateEnterExecutingMode(charger)
 requested_times = []  # To store requested times
 granted_times = []  # To store granted times
 published_values = []
+subscribed_values = []
 granted_time=0.00
 
 # Simulation Loop
@@ -60,6 +61,8 @@ for t in range(0, 10):
     requested_times.append(requested_time)
     granted_times.append(granted_time)
     published_values.append(charging_value)
+    subscribed_values.append(control_signal)
+    
 
 
 # Cleanup
@@ -68,7 +71,9 @@ h.helicsFederateDestroy(charger)
 data = {
     "Request Time (s)": requested_times,
     "Grant Time (s)": granted_times,
-    "Subscribed Value (kW)": published_values,
+    "Subscribed Value from Controller": subscribed_values,
+    "Published Value (kW)": published_values,
+    
 
 }
 df = pd.DataFrame(data)
